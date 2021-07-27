@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 
 //@route POST api/users
 //@desc Register a user
-//@access Public
+//@access Private
 router.post('/', (req, res) => {
   res.send('Register a user');
 });
