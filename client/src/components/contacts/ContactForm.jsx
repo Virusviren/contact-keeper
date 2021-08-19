@@ -3,12 +3,10 @@ import contactContext from '../../context/contact/ContactContext';
 
 const ContactForm = () => {
   const ContactContext = useContext(contactContext);
-  const { addContact, current } = ContactContext;
+  const { addContact, current, clearCurrent } = ContactContext;
 
   useEffect(() => {
     if (current !== null) {
-      console.log('Viren');
-      console.log(current);
       setContact(current);
     } else {
       setContact({
@@ -30,19 +28,24 @@ const ContactForm = () => {
   const { name, email, phone, type } = contact;
   const onSubmit = (e) => {
     e.preventDefault();
-    addContact(contact);
-    setContact({
-      name: '',
-      email: '',
-      phone: '',
-      type: 'personal',
-    });
+    if (current === null) {
+      addContact(contact);
+    } else {
+    }
+    clearAll();
   };
+
   const onChange = (e) =>
     setContact({ ...contact, [e.target.name]: e.target.value });
+  const clearAll = () => {
+    console.log('VIrejn');
+    clearCurrent();
+  };
   return (
     <form onSubmit={onSubmit}>
-      <h2 className='tex-primary'>Add Contact Details</h2>
+      <h2 className='tex-primary'>
+        {current ? 'Edit Contact Details' : 'Add Contact Details'}
+      </h2>
       <input
         type='text'
         placeholder='Name'
@@ -84,10 +87,17 @@ const ContactForm = () => {
       <div>
         <input
           type='submit'
-          value='Add Contact'
+          value={current ? 'Update Contact ' : 'Add Contact '}
           className='btn btn-primary btn-block'
         />
       </div>
+      {current && (
+        <div>
+          <button className='btn btn-light btn-block' onClick={clearAll}>
+            Clear
+          </button>
+        </div>
+      )}
     </form>
   );
 };
