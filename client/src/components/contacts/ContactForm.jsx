@@ -3,7 +3,7 @@ import contactContext from '../../context/contact/ContactContext';
 
 const ContactForm = () => {
   const ContactContext = useContext(contactContext);
-  const { addContact, current, clearCurrent } = ContactContext;
+  const { addContact, current, clearCurrent, updateContact } = ContactContext;
 
   useEffect(() => {
     if (current !== null) {
@@ -31,6 +31,8 @@ const ContactForm = () => {
     if (current === null) {
       addContact(contact);
     } else {
+      console.log('UPdate');
+      updateContact(contact);
     }
     clearAll();
   };
