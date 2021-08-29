@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import ContactFilter from '../../context/contact/ContactFilter';
+import ContactFilter from '../contacts/ContactFilter';
 import ContactForm from '../contacts/ContactForm';
 import Contacts from '../contacts/Contacts';
 import contactContext from '../../context/contact/ContactContext';
