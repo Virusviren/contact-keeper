@@ -15,7 +15,7 @@ import {
 } from '../types.js';
 
 const ContactState = (props) => {
-  const intialState = {
+  const initialState = {
     contacts: [
       {
         id: 1,
@@ -43,7 +43,7 @@ const ContactState = (props) => {
     filtered: null,
   };
 
-  const [state, dispatch] = useReducer(contactReducer, intialState);
+  const [state, dispatch] = useReducer(contactReducer, initialState);
   // ADD CONTACT
   const addContact = (contact) => {
     contact.id = uuidv4();
