@@ -1,17 +1,23 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import alertContext from '../../context/alert/AlertContext';
 import authContext from '../../context/auth/AuthContext';
 const Register = () => {
   const AlertContext = useContext(alertContext);
   const AuthContext = useContext(authContext);
   const { setAlert } = AlertContext;
-  const { register } = AuthContext;
+  const { register, error, clearErrors } = AuthContext;
   const [user, setUser] = useState({
     name: '',
     email: '',
     password: '',
     password2: '',
   });
+  useEffect(() => {
+    if (error === 'User exist') {
+      setAlert(error, 'danger');
+      clearErrors();
+    }
+  }, [error]);
   const { name, email, password, password2 } = user;
 
   const onChange = (e) => {
